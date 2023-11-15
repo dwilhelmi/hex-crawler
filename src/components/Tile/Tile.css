@@ -1,0 +1,10 @@
+.tileResults {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+.resultName {
+  margin: 0;
+  margin-right: 8px;
+  font-weight: bold;
+}
