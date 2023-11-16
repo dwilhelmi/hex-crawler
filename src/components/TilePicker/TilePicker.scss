@@ -1,1 +1,18 @@
-.TilePicker {}
+.TileList {
+  list-style-type: none;
+  display: flex;
+}
+.TileButton {
+  color: black;
+  border: none;
+  background-color: transparent;
+  margin: 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & img {
+    max-height: 80px;
+  }
+}

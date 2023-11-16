@@ -17,7 +17,7 @@ export default function TileExplorer() {
     }
     return <>
         <TravelOptions partySpeed={partySpeed} setPartySpeed={setPartySpeed} exploring={exploring} setExploring={setExploring} />
-        <TilePicker onTileChanged={exploreTile} />
+        <TilePicker selectedTile={exploredTile} onTileChanged={exploreTile} />
         { exploredTile === null ? <p>Nothing explored yet</p> : <Tile tileType={exploredTile} speed={partySpeed} exploring={exploring} /> }
     </>;
 }

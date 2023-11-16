@@ -12,12 +12,12 @@ export default function TravelOptions({ partySpeed, setPartySpeed, exploring, se
         <Dropdown options={partySpeedOptions} onChange={(opt) => setPartySpeed(opt.value as Speed)} value={partySpeed} placeholder="Select an option" />
     </div>
     <div className='configOption'>
+        <label htmlFor="exploring">Fully Exploring?</label>
         <ToggleSwitch
             id="exploring"
             checked={exploring}
             onChange={() => setExploring(!exploring)}
         />
-        <label htmlFor="exploring">Fully Exploring?</label>
     </div>
   </>;
 }
