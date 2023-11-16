@@ -1,6 +1,7 @@
 import logo from './images/hex-crawler-icon.png';
 import './App.css';
 import TileExplorer from './components/TileExplorer';
+import 'react-dropdown/style.css';
 
 function App() {
   return (

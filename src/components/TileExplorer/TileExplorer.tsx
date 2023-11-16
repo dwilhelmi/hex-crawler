@@ -3,6 +3,9 @@ import './TileExplorer.css';
 import { Speed, TileType, displayNameMap, partySpeedDisplayMap } from '../../utils/global-types';
 import Tile from '../Tile/Tile';
 import ToggleSwitch from '../ToggleSwitch';
+import Dropdown from 'react-dropdown';
+
+const partySpeedOptions = (Object.keys(partySpeedDisplayMap) as Speed[]).map(speed => ({ value: speed, label: partySpeedDisplayMap[speed]}));
 
 export default function TileExplorer() {
     const [exploredTile, setExploredTile] = useState<TileType | null>(null);
@@ -17,9 +20,7 @@ export default function TileExplorer() {
     return <>
         <div className='configOption'>
             <p>Party Speed: </p>
-            <select onChange={(e) => setPartySpeed(e.target.value as Speed)}>
-                { (Object.keys(partySpeedDisplayMap) as Speed[]).map(speed => <option selected={speed === partySpeed} value={speed}>{partySpeedDisplayMap[speed]}</option>)}
-            </select>
+            <Dropdown options={partySpeedOptions} onChange={(opt) => setPartySpeed(opt.value as Speed)} value={partySpeed} placeholder="Select an option" />
         </div>
         <div className='configOption'>
             <ToggleSwitch
