@@ -11,7 +11,17 @@ export default function TilePicker({ selectedTile, onTileChanged }: { selectedTi
               className={`TileButton ${tileType === selectedTile ? 'SelectedTile' : ''}`}
               onClick={() => {onTileChanged(tileType);}}
             >
-              <img src={`hex-${tileType}.png`} />{displayNameMap[tileType]}
+              <div className="flip-card">
+                <div className="flip-card-inner">
+                  <div className="flip-card-front">
+                    <img src={`hex-${tileType}.png`} />
+                  </div>
+                  <div className="flip-card-back">
+                    <img src={`hex-crawler-icon.png`} />
+                  </div>
+                </div>
+              </div>
+              {displayNameMap[tileType]}
             </button>
           </li>
         )}
