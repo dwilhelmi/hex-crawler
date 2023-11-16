@@ -19,8 +19,7 @@ const travelTimes: Record<Speed, Record<'easy' | 'medium' | 'hard', number>> = {
   xfast: { easy: 3, medium: 5, hard: 10 },
 }
 
-export default function Tile({ tileType, speed, passingThrough } : { tileType: TileType, speed: Speed, passingThrough: boolean, key?: string }) {
-  console.log('Exploring a tile');
+export default function Tile({ tileType, speed, exploring } : { tileType: TileType, speed: Speed, exploring: boolean, key?: string }) {
   const getDays = (): number => {
     switch(tileType) {
       case 'desert':
@@ -44,9 +43,9 @@ export default function Tile({ tileType, speed, passingThrough } : { tileType: T
     }
   };
   const travelTime = `${getHours()} hours`;
-  const elapsedTime = passingThrough ? travelTime: explorationTime;
+  const elapsedTime = exploring ? explorationTime : travelTime;
 
-  const featureDiscovered = passingThrough ? rollDice({sides: 100}) < 34 : true;
+  const featureDiscovered = exploring ? true : rollDice({sides: 100}) < 34;
 
   const tileFeaturesRoll = rollDice({sides: 100});
 
@@ -285,10 +284,10 @@ export default function Tile({ tileType, speed, passingThrough } : { tileType: T
 
   const luckyFindsOutput = luckyFinds.length > 0 ? luckyFinds.map(item => <div>{item}</div>) : 'No lucky finds';
   let gptPrompt = ``;
-  if (passingThrough) {
-    gptPrompt += `The PCs spend ${elapsedTime} traveling through the 12 sq mi length of the ${tileType} terrain. `
-  } else {
+  if (exploring) {
     gptPrompt += `The PCs spend ${elapsedTime} fully exploring a 95 sq mi area of the ${tileType} terrain. `
+  } else {
+    gptPrompt += `The PCs spend ${elapsedTime} traveling through the 12 sq mi length of the ${tileType} terrain. `
   }
 
   if (ruin) {
